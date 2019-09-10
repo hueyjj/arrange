@@ -1,9 +1,9 @@
-.PHONY: all build clean
+.PHONY: all binary clean
 
-all: build
+all: binary
 
-build:
-	go build
+binary:
+	go build ./cmd/arrange
 
 clean:
 	go clean
