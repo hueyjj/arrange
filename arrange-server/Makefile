@@ -7,4 +7,4 @@ binary:
 	go build -o ./bin/arrange ./cmd/arrange 
 
 clean:
-	go clean
+	rm -f ./bin/arrange
