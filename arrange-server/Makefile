@@ -3,7 +3,8 @@
 all: binary
 
 binary:
-	go build ./cmd/arrange
+	mkdir -p ./bin
+	go build -o ./bin/arrange ./cmd/arrange 
 
 clean:
 	go clean

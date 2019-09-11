@@ -1,9 +1,14 @@
 package commands
 
 import (
-	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	"github.com/hueyjj/arrange-server/app"
 )
 
 var serverCmd = &cobra.Command{
@@ -19,6 +24,21 @@ func init() {
 }
 
 func serverCmdF(command *cobra.Command, args []string) error {
-	fmt.Println("server ran")
+	return runServer()
+}
+
+func runServer() error {
+	server := app.NewServer()
+	defer server.Shutdown()
+
+	err := server.Start()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	interruptChan := make(chan os.Signal, 1)
+	signal.Notify(interruptChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM, syscall.SIGPIPE)
+	<-interruptChan
+
 	return nil
 }

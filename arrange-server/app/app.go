@@ -4,5 +4,6 @@ type App struct {
 }
 
 func New() *App {
-	return nil
+	app := &App{}
+	return app
 }
