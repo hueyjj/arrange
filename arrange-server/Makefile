@@ -1,6 +1,10 @@
 .PHONY: all binary clean
 
-all: binary
+all: run
+
+# Run the server
+run: binary
+	./bin/arrange server
 
 binary:
 	mkdir -p ./bin
