@@ -3,10 +3,10 @@ package controller
 import "net/http"
 
 func (c *Controller) InitUser() {
-	c.Routes.User.HandleFunc("/register", registerUser).Methods("POST")
+	c.Routes.User.HandleFunc("/profile", userProfile).Methods("GET")
 }
 
-func registerUser(w http.ResponseWriter, r *http.Request) {
+func userProfile(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 	w.Write([]byte("hi"))
 }

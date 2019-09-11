@@ -25,6 +25,7 @@ func Init(root *mux.Router) *Controller {
 
 	controller.Routes.User = controller.Routes.Api.PathPrefix("/user").Subrouter()
 
+	controller.InitAuth()
 	controller.InitUser()
 
 	return controller
