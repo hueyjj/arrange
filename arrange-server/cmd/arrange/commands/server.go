@@ -8,7 +8,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/hueyjj/arrange-server/app"
+	"github.com/hueyjj/arrange-server/app/server"
 )
 
 var serverCmd = &cobra.Command{
@@ -28,10 +28,10 @@ func serverCmdF(command *cobra.Command, args []string) error {
 }
 
 func runServer() error {
-	server := app.NewServer()
-	defer server.Shutdown()
+	s := server.NewServer()
+	defer s.Shutdown()
 
-	err := server.Start()
+	err := s.Start()
 	if err != nil {
 		log.Fatal(err)
 	}
