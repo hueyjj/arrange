@@ -14,16 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 from rest_framework import routers
 
 from arrange.guild import views
 
+API_VERSION = '^(?P<version>(v1|v2))'
+
 urlpatterns = [
-    path('', include('arrange.guild.urls')),
     path('admin/', admin.site.urls),
-    path('auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    re_path(f'{API_VERSION}/', include('arrange.guild.urls')),
+    re_path(f'{API_VERSION}/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(f'{API_VERSION}/rest-auth/', include('rest_auth.urls')),
+    re_path(f'{API_VERSION}/rest-auth/registration/', include('rest_auth.registration.urls')),
 ]
