@@ -25,7 +25,6 @@ API_VERSION = '^(?P<version>(v1|v2))'
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(f'{API_VERSION}/', include('arrange.guild.urls')),
-    re_path(f'{API_VERSION}/auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path(f'{API_VERSION}/rest-auth/', include('rest_auth.urls')),
-    re_path(f'{API_VERSION}/rest-auth/registration/', include('rest_auth.registration.urls')),
+    re_path(f'{API_VERSION}/auth/', include('rest_auth.urls')),
+    re_path(f'{API_VERSION}/auth/registration/', include('rest_auth.registration.urls')),
 ]
